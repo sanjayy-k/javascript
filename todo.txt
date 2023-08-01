@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <input type="text" id="task" placeholder="Enter task">
+    <button onclick="addTask()">Add</button>
+    <ul id="taskList">
+    </ul>
+
+    <script>
+        // Array to store tasks
+        let tasks = [];
+
+        // Function to add a task
+        function addTask() {
+            const taskInput = document.getElementById("task");
+            const taskText = taskInput.value.trim();
+
+            if (taskText === "") {
+                alert("Please enter a task.");
+                return;
+            }
+
+            tasks.push({
+                text: taskText,
+                done: false
+            });
+
+            taskInput.value = "";
+            updateTaskList();
+        }
+
+        // Function to mark a task as done
+        function markAsDone(index) {
+            tasks[index].done = true;
+            updateTaskList();
+        }
+
+        // Function to remove a task
+        function removeTask(index) {
+            tasks.splice(index, 1);
+            updateTaskList();
+        }
+
+        // Function to update the task list
+        function updateTaskList() {
+            const taskList = document.getElementById("taskList");
+            taskList.innerHTML = "";
+
+            tasks.forEach((task, index) => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <input type="checkbox" onchange="markAsDone(${index})" ${task.done ? "checked" : ""}>
+                    <span style="text-decoration: ${task.done ? 'line-through' : 'none'}">${task.text}</span>
+                    <button onclick="removeTask(${index})">Remove</button>
+                `;
+                taskList.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
