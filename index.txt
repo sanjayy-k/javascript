@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Button Example</title>
+    <link rel="stylesheet" type="text/css" href="styles1.css">
+</head>
+<body>
+    <h1 id="changeColorText">Click the button to change my color!</h1>
+    <button id="colorChangeButton">Change Color</button>
+
+    <script src="script1.js"></script>
+    
+</body>
+</html>
